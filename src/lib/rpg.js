@@ -2013,6 +2013,7 @@ export function formatEvolutionResult(result, prefix = ".") {
 export function formatSkillStatus(player, prefix = ".") {
 	const slots = getSkillSlotLimit(player);
 	const ownedKeys = getOwnedSkillKeys(player);
+	const equippedSet = new Set(player.skills.equipped);
 	const equippedRows = player.skills.equipped.length
 		? player.skills.equipped.map((skillKey) => {
 				const level = getSkillLevel(player, skillKey);
@@ -2030,11 +2031,17 @@ export function formatSkillStatus(player, prefix = ".") {
 				const data = player.skills.owned[skillKey];
 				const skill = SKILLS[skillKey];
 				const type = skill.type === "unique" ? "Unique" : "Normal";
-				const icon = skill.type === "unique" ? "🌟" : "🔹";
+				const icon = equippedSet.has(skillKey)
+					? "✅"
+					: skill.type === "unique"
+						? "🌟"
+						: "🔹";
+				const activeText = equippedSet.has(skillKey) ? " | aktif" : "";
 
 				return [
-					`${icon} *${skillKey}* - ${skill.name} Lv ${data.level}`,
-					`   ${type} | shard ${data.shards}`,
+					`${icon} *${skill.name}* Lv ${data.level}`,
+					`   ID: \`${skillKey}\` | ${type}${activeText}`,
+					`   ${formatSkillBonus(skillKey, data.level)} | shard ${data.shards}`,
 				].join("\n");
 			})
 		: [
@@ -2059,16 +2066,17 @@ export function formatSkillStatus(player, prefix = ".") {
 		...chatHeader(
 			"✨",
 			`Skill ${player.name}`,
-			`Slot aktif ${player.skills.equipped.length}/${slots}`
+			`Dimiliki ${ownedKeys.length} | Aktif ${player.skills.equipped.length}/${slots}`
 		),
 		...sectionTitle("⚡", "Aktif"),
 		...equippedRows,
-		...sectionTitle("📚", "Dimiliki"),
+		...sectionTitle("📚", "Skill Dimiliki"),
 		...ownedRows,
 		...sectionTitle("🌟", "Unique Skill"),
 		...uniqueRows,
 		"",
 		commandHint("Equip", `${prefix}skill equip <skill>`),
+		commandHint("Lepas", `${prefix}skill unequip <skill>`),
 		commandHint("Awaken", `${prefix}skill awaken <unique>`),
 	].join("\n");
 }
