@@ -1,0 +1,37 @@
+{
+	"functions": {
+		"api/**/*.js": {
+			"maxDuration": 10
+		}
+	},
+	"rewrites": [
+		{
+			"source": "/",
+			"destination": "/api/home"
+		},
+		{
+			"source": "/health",
+			"destination": "/api/health"
+		},
+		{
+			"source": "/dashboard",
+			"destination": "/api/dashboard"
+		},
+		{
+			"source": "/link",
+			"destination": "/api/link"
+		},
+		{
+			"source": "/link/callback",
+			"destination": "/api/link"
+		},
+		{
+			"source": "/api/link/complete",
+			"destination": "/api/link-complete"
+		},
+		{
+			"source": "/api/dashboard/me",
+			"destination": "/api/dashboard-me"
+		}
+	]
+}
