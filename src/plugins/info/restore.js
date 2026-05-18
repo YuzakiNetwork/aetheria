@@ -5,6 +5,18 @@ import {
 	syncCurrentPlayerToSupabase,
 } from "#lib/rpg";
 import { createAccountLinkSession } from "#lib/supabase/accountLinking";
+import { sendCtaUrlButton } from "#lib/whatsappButtons";
+
+function buildRestoreFallback(link, prefix) {
+	return [
+		"*Restore Aetheria*",
+		"Buka link ini dan masuk dengan Google yang punya cloud save:",
+		link,
+		"",
+		`Setelah muncul sukses, kembali ke WhatsApp dan ketik: ${prefix}restore apply`,
+		`Berlaku ${SUPABASE_CONFIG.linkTokenTtlMinutes} menit.`,
+	].join("\n");
+}
 
 export default {
 	name: "restore",
@@ -16,7 +28,8 @@ export default {
 	usage: "$prefix$command [apply]",
 	wait: null,
 
-	async execute(m) {
+	async execute(m, context) {
+		const sock = context?.sock;
 		const jid = getPlayerId(m);
 		const action = String(m.args[0] || "").toLowerCase();
 
@@ -86,15 +99,17 @@ export default {
 			return;
 		}
 
-		await m.reply(
-			[
-				"*Restore Aetheria*",
-				"Buka link ini dan masuk dengan Google yang punya cloud save:",
-				result.link,
-				"",
-				`Setelah muncul sukses, kembali ke WhatsApp dan ketik: ${m.prefix}restore apply`,
-				`Berlaku ${SUPABASE_CONFIG.linkTokenTtlMinutes} menit.`,
-			].join("\n")
+		await sendCtaUrlButton(
+			sock,
+			m,
+			{
+				title: "Restore Aetheria",
+				body: "Masuk dengan Google yang punya cloud save.",
+				footer: `Setelah sukses, ketik ${m.prefix}restore apply.`,
+				buttonText: "Restore Google",
+				url: result.link,
+			},
+			buildRestoreFallback(result.link, m.prefix)
 		);
 	},
 };
