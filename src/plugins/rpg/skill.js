@@ -15,10 +15,10 @@ export default {
 	category: "petualangan",
 	cooldown: 5,
 	usage: [
-		"$prefix$command",
-		"$prefix$command equip <skill>",
-		"$prefix$command unequip <skill>",
-		"$prefix$command awaken <unique>",
+		"$prefix$command - lihat skill",
+		"$prefix$command equip skill_id",
+		"$prefix$command unequip skill_id",
+		"$prefix$command awaken unique_id",
 	],
 	wait: null,
 
