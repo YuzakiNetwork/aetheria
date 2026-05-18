@@ -4,7 +4,7 @@ import {
 	extractMessageContent,
 	getContentType,
 	jidNormalizedUser,
-} from "baileys";
+} from "@itsliaaa/baileys";
 import { mkdir, readFile, writeFile } from "fs/promises";
 import { MongoClient } from "mongodb";
 import { join } from "path";

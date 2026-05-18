@@ -22,7 +22,7 @@ import {
 	makeCacheableSignalKeyStore,
 	makeWASocket,
 	proto,
-} from "baileys";
+} from "@itsliaaa/baileys";
 import { randomBytes } from "node:crypto";
 import pino from "pino";
 

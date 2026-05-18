@@ -15,7 +15,7 @@ export default {
 	/**
 	 * @param {import("../../lib/serialize.js").SerializedMessage} m
 	 * @param {string} text
-	 * @param {import("baileys").WASocket} sock
+	 * @param {import("@itsliaaa/baileys").WASocket} sock
 	 */
 	execute: async (m, { text, sock }) => {
 		const phone = (text || "").replace(/\D/g, "");

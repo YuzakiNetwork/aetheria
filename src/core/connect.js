@@ -23,7 +23,7 @@ import {
 	makeCacheableSignalKeyStore,
 	makeWASocket,
 	proto,
-} from "baileys";
+} from "@itsliaaa/baileys";
 import qrcode from "qrcode";
 
 /**

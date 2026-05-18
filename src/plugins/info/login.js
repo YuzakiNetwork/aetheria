@@ -4,79 +4,31 @@ import {
 	createAccountLinkSession,
 	getLinkedAccountByWhatsApp,
 } from "#lib/supabase/accountLinking";
-import { WAProto, generateWAMessageFromContent } from "baileys";
 
-const USE_EXPERIMENTAL_CTA_URL =
-	process.env.AETHERIA_WA_CTA_URL_ENABLED === "true";
-
-function createCtaUrlMessage({ title, body, footer, buttonText, url }) {
-	const interactiveMessage = WAProto.Message.InteractiveMessage.create({
-		header: WAProto.Message.InteractiveMessage.Header.create({
-			title,
-			hasMediaAttachment: false,
-		}),
-		body: WAProto.Message.InteractiveMessage.Body.create({
-			text: body,
-		}),
-		footer: WAProto.Message.InteractiveMessage.Footer.create({
-			text: footer,
-		}),
-		nativeFlowMessage:
-			WAProto.Message.InteractiveMessage.NativeFlowMessage.create({
-				buttons: [
-					WAProto.Message.InteractiveMessage.NativeFlowMessage.NativeFlowButton.create(
-						{
-							name: "cta_url",
-							buttonParamsJson: JSON.stringify({
-								display_text: buttonText,
-								url,
-								merchant_url: url,
-							}),
-						}
-					),
-				],
-				messageParamsJson: JSON.stringify({}),
-				messageVersion: 1,
-			}),
-	});
-
-	return WAProto.Message.fromObject({
-		viewOnceMessage: {
-			message: {
-				messageContextInfo: {
-					deviceListMetadata: {},
-					deviceListMetadataVersion: 2,
-				},
-				interactiveMessage,
-			},
-		},
-	});
-}
-
-async function sendCtaUrl(sock, m, payload, fallbackText) {
-	if (!USE_EXPERIMENTAL_CTA_URL) {
-		await m.reply(fallbackText, { linkPreview: true });
-		return;
-	}
-
-	if (!sock?.relayMessage || !sock?.user?.id) {
+async function sendCtaUrlButton(sock, m, payload, fallbackText) {
+	if (!sock?.sendMessage) {
 		await m.reply(fallbackText, { linkPreview: true });
 		return;
 	}
 
 	try {
-		const message = generateWAMessageFromContent(
+		await sock.sendMessage(
 			m.from,
-			createCtaUrlMessage(payload),
+			{
+				text: `*${payload.title}*\n${payload.body}`,
+				footer: payload.footer,
+				nativeFlow: [
+					{
+						text: payload.buttonText,
+						url: payload.url,
+						useWebview: true,
+					},
+				],
+			},
 			{
 				quoted: m,
-				userJid: sock.user.id,
 			}
 		);
-
-		await sock.relayMessage(message.key.remoteJid, message.message, {
-			messageId: message.key.id,
-		});
 	} catch {
 		await m.reply(fallbackText, { linkPreview: true });
 	}
@@ -129,7 +81,7 @@ export default {
 				`Mau ganti akun? Ketik ${m.prefix}logout confirm lalu login lagi.`,
 			].join("\n");
 
-			await sendCtaUrl(
+			await sendCtaUrlButton(
 				sock,
 				m,
 				{
@@ -160,7 +112,7 @@ export default {
 			return;
 		}
 
-		await sendCtaUrl(
+		await sendCtaUrlButton(
 			sock,
 			m,
 			{

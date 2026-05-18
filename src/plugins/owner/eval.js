@@ -17,7 +17,7 @@ export default {
 	/**
 	 * Executes the provided JavaScript code.
 	 * @param {object} context - The context object.
-	 * @param {import('baileys').WASocket} context.sock - The Baileys socket object.
+	 * @param {import('@itsliaaa/baileys').WASocket} context.sock - The Baileys socket object.
 	 * @param {object} context.m - The serialized message object.
 	 * @param {string} context.text - The text content after the command.
 	 * @param {string[]} context.args - Arguments of the command.

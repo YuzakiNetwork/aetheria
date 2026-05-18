@@ -1,5 +1,5 @@
 import print from "#lib/print";
-import { BufferJSON, WAProto, initAuthCreds } from "baileys";
+import { BufferJSON, WAProto, initAuthCreds } from "@itsliaaa/baileys";
 import { MongoClient } from "mongodb";
 
 /**

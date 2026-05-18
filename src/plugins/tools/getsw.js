@@ -29,7 +29,7 @@ export default {
 	 *
 	 * @param {object} m - Serialized message object.
 	 * @param {object} context - Command context.
-	 * @param {import('baileys').WASocket} context.sock - Active Baileys socket.
+	 * @param {import('@itsliaaa/baileys').WASocket} context.sock - Active Baileys socket.
 	 * @returns {Promise<string>}
 	 */
 	execute: async (m, { sock }) => {

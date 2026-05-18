@@ -21,7 +21,7 @@ export default {
 
 	/**
 	 * @param {import("../../lib/serialize").default} m
-	 * @param {{ api: any, sock: import("baileys").WASocket }}
+	 * @param {{ api: any, sock: import("@itsliaaa/baileys").WASocket }}
 	 */
 	async execute(m, { api, sock }) {
 		if (!sock.spotify) {
@@ -97,7 +97,7 @@ export default {
 	/**
 	 * Handles replies to the search result message.
 	 * @param {import("../../lib/serialize").default} m
-	 * @param {{ sock: import("baileys").WASocket, api: any }}
+	 * @param {{ sock: import("@itsliaaa/baileys").WASocket, api: any }}
 	 */
 	async after(m, { sock, api }) {
 		const session = sock.spotify?.[m.sender];

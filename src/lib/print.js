@@ -38,7 +38,7 @@ const log = (type, message, error = null) => {
 /**
  * Print incoming message to the console.
  * @param {object} m - The serialized message object.
- * @param {import('baileys').WASocket} sock - The Baileys socket object.
+ * @param {import('@itsliaaa/baileys').WASocket} sock - The Baileys socket object.
  */
 export const print = async (m, store) => {
 	if (!m || m.messageTimestamp === undefined || m.messageTimestamp === null) {

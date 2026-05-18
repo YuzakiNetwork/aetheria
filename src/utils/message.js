@@ -3,7 +3,7 @@ import {
 	getContentType,
 	jidNormalizedUser,
 	proto,
-} from "baileys";
+} from "@itsliaaa/baileys";
 import { createHash } from "node:crypto";
 
 const MESSAGE_EDIT = proto?.Message?.ProtocolMessage?.Type?.MESSAGE_EDIT ?? 14;

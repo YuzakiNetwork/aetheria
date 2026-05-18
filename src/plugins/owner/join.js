@@ -17,7 +17,7 @@ export default {
 	owner: true,
 
 	/**
-	 * @param {import('baileys').WASocket} sock
+	 * @param {import('@itsliaaa/baileys').WASocket} sock
 	 * @param {object} m
 	 */
 	async execute(m, { sock, text }) {

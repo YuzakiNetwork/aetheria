@@ -16,14 +16,14 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/nat9h/Katsumi.git"
+		"url": "git+https://github.com/YuzakiNetwork/aetheria.git"
 	},
 	"author": "Natsumi, adapted for Aetheria",
 	"license": "MIT",
 	"bugs": {
-		"url": "https://github.com/nat9h/Katsumi/issues"
+		"url": "https://github.com/YuzakiNetwork/aetheria/issues"
 	},
-	"homepage": "https://github.com/nat9h/Katsumi#readme",
+	"homepage": "https://github.com/YuzakiNetwork/aetheria#readme",
 	"description": "Clean, modular WhatsApp bot based on Katsumi and Baileys.",
 	"keywords": [
 		"whatsapp-bot",
@@ -31,9 +31,9 @@
 		"baileys"
 	],
 	"dependencies": {
+		"@itsliaaa/baileys": "^0.3.6",
 		"@supabase/supabase-js": "^2.105.4",
 		"axios": "^1.13.5",
-		"baileys": "^7.0.0-rc.9",
 		"cheerio": "^1.2.0",
 		"file-type": "^21.3.0",
 		"fluent-ffmpeg": "^2.1.3",

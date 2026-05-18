@@ -13,7 +13,7 @@ export default {
 	react: true,
 
 	/**
-	 * @param {import('baileys').WASocket} sock - The Baileys socket object.
+	 * @param {import('@itsliaaa/baileys').WASocket} sock - The Baileys socket object.
 	 * @param {object} m - The serialized message object.
 	 */
 	execute: async (m) => {

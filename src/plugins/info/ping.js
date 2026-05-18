@@ -20,7 +20,7 @@ export default {
 	owner: false,
 
 	/**
-	 * @param {import('baileys').WASocket} sock - The Baileys socket object.
+	 * @param {import('@itsliaaa/baileys').WASocket} sock - The Baileys socket object.
 	 * @param {object} m - The serialized message object.
 	 */
 	// can like this, async execute(m, { property }) {..} or async execute(m) {..}

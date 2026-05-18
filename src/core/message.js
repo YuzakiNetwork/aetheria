@@ -24,8 +24,8 @@ class Message {
 
 	/**
 	 * Handle 'messages.upsert' event from Baileys.
-	 * @param {import('baileys').WASocket} sock - Baileys socket object.
-	 * @param {{ messages: import('baileys').proto.IWebMessageInfo[], type: string }} data - Message data from the event.
+	 * @param {import('@itsliaaa/baileys').WASocket} sock - Baileys socket object.
+	 * @param {{ messages: import('@itsliaaa/baileys').proto.IWebMessageInfo[], type: string }} data - Message data from the event.
 	 */
 	async process(sock, { messages, type }) {
 		if (type !== "notify") {
