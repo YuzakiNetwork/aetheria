@@ -171,6 +171,24 @@ class PluginManager {
 		return this.plugins;
 	}
 
+	normalizeCommandArgs(args) {
+		if (!Array.isArray(args)) {
+			return [];
+		}
+
+		return args
+			.map((arg) => String(arg ?? "").trim())
+			.filter(Boolean)
+			.map((arg) => arg.toLowerCase());
+	}
+
+	buildQueueCommandKey(m) {
+		const command = String(m?.command || "").trim().toLowerCase();
+		const normalizedArgs = this.normalizeCommandArgs(m?.args);
+
+		return `${command}|${normalizedArgs.join(" ")}`;
+	}
+
 	async enqueueCommand(sock, m) {
 		const senderKey = this.getStableSenderKey(m);
 		if (!senderKey) {
@@ -190,19 +208,20 @@ class PluginManager {
 			return;
 		}
 
+		const commandKey = this.buildQueueCommandKey(m);
 		const isDuplicate = queue.some(
-			(item) => item.m.command === m.command && item.m.args === m.args
+			(item) => this.buildQueueCommandKey(item.m) === commandKey
 		);
 		if (isDuplicate) {
 			print.debug(
-				`♻ Skipped duplicate command: ${m.command} from ${senderKey}`
+				`♻ Skipped duplicate command: ${m.command} from ${senderKey} (key: ${commandKey})`
 			);
 			return;
 		}
 
 		queue.push({ sock, m });
 		print.debug(
-			`📥 Enqueued: ${m.prefix}${m.command} for ${senderKey} (Queue: ${queue.length})`
+			`📥 Enqueued: ${m.prefix}${m.command} for ${senderKey} (Queue: ${queue.length}, key: ${commandKey})`
 		);
 
 		if (!this.processingStatus.get(senderKey)) {
