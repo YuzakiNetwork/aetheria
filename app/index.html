@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="id">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1, viewport-fit=cover"
+		/>
+		<meta
+			name="description"
+			content="Aetheria Pixel RPG, aplikasi companion untuk bot WhatsApp Aetheria."
+		/>
+		<meta name="theme-color" content="#18251e" />
+		<link rel="manifest" href="/manifest.webmanifest" />
+		<link rel="icon" type="image/svg+xml" href="/icon.svg" />
+		<title>Aetheria Pixel RPG</title>
+	</head>
+	<body>
+		<main class="app-shell">
+			<section class="playfield" aria-label="Aetheria Pixel RPG">
+				<div id="game-root" class="game-root"></div>
+
+				<header class="hud" aria-label="Status karakter">
+					<div class="hud-group identity">
+						<span class="label">Aether</span>
+						<strong id="hud-level">Lv. 1</strong>
+					</div>
+					<div class="hud-group stat">
+						<span>HP</span>
+						<strong id="hud-hp">120/120</strong>
+					</div>
+					<div class="hud-group stat">
+						<span>Gold</span>
+						<strong id="hud-gold">0</strong>
+					</div>
+					<div class="hud-group stat">
+						<span>Power</span>
+						<strong id="hud-power">12</strong>
+					</div>
+					<button
+						id="install-app"
+						class="install-button"
+						type="button"
+						hidden
+					>
+						Install
+					</button>
+				</header>
+
+				<div id="dialog-panel" class="dialog-panel" hidden>
+					<div class="panel-title" id="dialog-title">Aetheria</div>
+					<p id="dialog-body"></p>
+					<div id="dialog-actions" class="panel-actions"></div>
+				</div>
+
+				<div id="battle-panel" class="battle-panel" hidden>
+					<div class="battle-topline">
+						<div>
+							<span class="label">Encounter</span>
+							<strong id="battle-name">Slime</strong>
+						</div>
+						<div class="monster-hp">
+							<span id="battle-hp">30/30</span>
+							<div class="hp-track">
+								<div id="battle-hp-fill" class="hp-fill"></div>
+							</div>
+						</div>
+					</div>
+					<p id="battle-log" class="battle-log"></p>
+					<div class="panel-actions">
+						<button id="battle-attack" type="button">Attack</button>
+						<button id="battle-skill" type="button">Skill</button>
+						<button id="battle-defend" type="button">Defend</button>
+						<button id="battle-flee" type="button">Flee</button>
+					</div>
+				</div>
+
+				<nav class="mobile-controls" aria-label="Kontrol gerak">
+					<button type="button" data-move="up" aria-label="Atas">
+						▲
+					</button>
+					<button type="button" data-move="left" aria-label="Kiri">
+						◀
+					</button>
+					<button
+						type="button"
+						data-action="interact"
+						aria-label="Interaksi"
+					>
+						●
+					</button>
+					<button type="button" data-move="right" aria-label="Kanan">
+						▶
+					</button>
+					<button type="button" data-move="down" aria-label="Bawah">
+						▼
+					</button>
+				</nav>
+			</section>
+
+			<aside class="side-panel" aria-label="Panel RPG">
+				<section class="panel">
+					<div class="panel-title">Quest</div>
+					<p id="quest-text"></p>
+				</section>
+				<section class="panel">
+					<div class="panel-title">Inventory</div>
+					<ul id="inventory-list" class="inventory-list"></ul>
+				</section>
+				<section class="panel">
+					<div class="panel-title">Log</div>
+					<ol id="activity-log" class="activity-log"></ol>
+				</section>
+			</aside>
+		</main>
+
+		<script type="module" src="/src/main.js"></script>
+	</body>
+</html>
