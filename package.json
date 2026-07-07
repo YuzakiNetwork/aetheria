@@ -1,0 +1,79 @@
+{
+	"name": "aetheria",
+	"version": "0.1.0",
+	"main": "src/main.js",
+	"engines": {
+		"node": "22.x"
+	},
+	"type": "module",
+	"scripts": {
+		"start": "node --env-file=.env src/main.js",
+		"dev": "node --watch --env-file=.env src/main.js",
+		"app:dev": "vite app --host 0.0.0.0",
+		"app:build": "vite build app --outDir ../dist/app",
+		"app:preview": "vite preview app --host 0.0.0.0 --outDir ../dist/app",
+		"prettier": "npx prettier . --write",
+		"pm2": "pm2 start ecosystem.config.cjs",
+		"lint": "eslint src tests --max-warnings=0",
+		"vercel-build": "node -e \"console.log('Aetheria Vercel functions ready')\""
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/YuzakiNetwork/aetheria.git"
+	},
+	"author": "YuzakiNetwork, Aetheria maintainers",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/YuzakiNetwork/aetheria/issues"
+	},
+	"homepage": "https://github.com/YuzakiNetwork/aetheria#readme",
+	"description": "Clean, modular WhatsApp bot based on Katsumi and Baileys.",
+	"keywords": [
+		"whatsapp-bot",
+		"bot-whatsapp",
+		"baileys"
+	],
+	"dependencies": {
+		"@discordjs/voice": "^0.19.2",
+		"baileys": "7.0.0-rc13",
+		"@supabase/supabase-js": "^2.105.4",
+		"axios": "^1.13.5",
+		"cheerio": "^1.2.0",
+		"discord.js": "^14.26.4",
+		"ffmpeg": "^0.0.4",
+		"ffmpeg-static": "^5.3.0",
+		"file-type": "^21.3.0",
+		"fluent-ffmpeg": "^2.1.3",
+		"jimp": "^1.6.0",
+		"libsodium-wrappers": "^0.8.4",
+		"mongodb": "^7.1.0",
+		"mysql-baileys": "github:bobslavtriev/mysql-baileys",
+		"node-webpmux": "^3.2.1",
+		"phaser": "^4.1.0",
+		"qrcode": "^1.5.4",
+		"vite": "^8.0.14",
+		"ws": "^8.20.1"
+	},
+	"devDependencies": {
+		"@babel/eslint-parser": "^7.28.4",
+		"@eslint/js": "^9.36.0",
+		"@trivago/prettier-plugin-sort-imports": "^5.2.2",
+		"eslint": "^9.36.0",
+		"eslint-config-prettier": "^10.1.8",
+		"eslint-import-resolver-alias": "^1.1.2",
+		"eslint-plugin-import": "^2.32.0",
+		"eslint-plugin-prettier": "^5.5.4",
+		"globals": "^17.3.0",
+		"prettier": "^3.8.1"
+	},
+	"imports": {
+		"#/*": "./*",
+		"#auth/*": "./src/auth/*.js",
+		"#core/*": "./src/core/*.js",
+		"#lib/*": "./src/lib/*.js",
+		"#config/*": "./src/config/*.js",
+		"#platforms/*": "./src/platforms/*.js",
+		"#utils/*": "./src/utils/*.js",
+		"#plugins/*": "./src/plugins/*.js"
+	}
+}
