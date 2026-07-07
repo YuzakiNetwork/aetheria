@@ -1,5 +1,7 @@
 # Aetheria
 
+[![tests](https://github.com/YuzakiNetwork/aetheria/actions/workflows/tests.yml/badge.svg)](https://github.com/YuzakiNetwork/aetheria/actions/workflows/tests.yml)
+
 > Modular WhatsApp bot — Aetheria is a WhatsApp RPG bot that turns your
 > group chats into a play-by-message adventure. It tracks character
 > stats, runs daily quests, lets you fight monsters from the right reply
