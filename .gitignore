@@ -154,3 +154,4 @@ core.*
 project.zip
 *.pid
 *.seed
+auth_info_voip

@@ -1881,129 +1881,12 @@ class SerializedMessageBuilder {
 			return payload;
 		};
 
-		const normalizeButtonText = (button) => {
-			const raw =
-				button?.text ||
-				button?.displayText ||
-				button?.buttonText?.displayText ||
-				button?.buttonText;
-
-			return typeof raw === "string" ? raw.trim() : "";
-		};
-
-		const _normalizeReplyButtons = (buttons = [], limit = 3) =>
-			(Array.isArray(buttons) ? buttons : [])
-				.map((button) => {
-					const id = String(
-						button?.id || button?.buttonId || ""
-					).trim();
-					const text = normalizeButtonText(button);
-
-					if (!id || !text) {
-						return null;
-					}
-
-					return { text, id };
-				})
-				.filter(Boolean)
-				.slice(0, limit);
-
-		const normalizeListSections = (sections = []) =>
-			(Array.isArray(sections) ? sections : [])
-				.map((section) => {
-					const title = String(section?.title || "Pilihan").trim();
-					const rows = (
-						Array.isArray(section?.rows) ? section.rows : []
-					)
-						.map((row) => {
-							const id = String(
-								row?.id || row?.rowId || ""
-							).trim();
-							const rowTitle = String(
-								row?.title || row?.text || ""
-							).trim();
-
-							if (!id || !rowTitle) {
-								return null;
-							}
-
-							return {
-								header: String(row?.header || "").trim(),
-								title: rowTitle,
-								description: String(
-									row?.description || ""
-								).trim(),
-								id,
-							};
-						})
-						.filter(Boolean);
-
-					return rows.length ? { title, rows } : null;
-				})
-				.filter(Boolean);
-
-		const _toListSections = (sections = []) =>
-			normalizeListSections(sections).map((section) => ({
-				title: section.title,
-				rows: section.rows.map((row) => ({
-					title: row.title,
-					description: row.description,
-					rowId: row.id,
-				})),
-			}));
-
-		const toNativeFlowSections = (sections = []) =>
-			normalizeListSections(sections).map((section) => ({
-				title: section.title,
-				rows: section.rows.map((row) => ({
-					header: row.header,
-					title: row.title,
-					description: row.description,
-					id: row.id,
-				})),
-			}));
-
-		const _normalizeNativeFlowButtons = (buttons = []) =>
-			(Array.isArray(buttons) ? buttons : [])
-				.map((button) => {
-					const text = normalizeButtonText(button);
-
-					if (!text) {
-						return null;
-					}
-
-					const normalized = { text };
-
-					for (const key of [
-						"id",
-						"copy",
-						"url",
-						"call",
-						"sections",
-						"name",
-						"paramsJson",
-						"icon",
-						"useWebview",
-					]) {
-						if (button?.[key] !== undefined) {
-							normalized[key] =
-								key === "sections"
-									? toNativeFlowSections(button[key])
-									: button[key];
-						}
-					}
-
-					const hasAction =
-						normalized.id ||
-						normalized.copy ||
-						normalized.url ||
-						normalized.call ||
-						normalized.sections ||
-						normalized.name;
-
-					return hasAction ? normalized : null;
-				})
-				.filter(Boolean);
+		// ponytail: the helpers previously defined here (normalizeButtonText,
+		// normalizeReplyButtons, normalizeListSections, _toListSections,
+		// toNativeFlowSections, normalizeNativeFlowButtons) were dropped
+		// when Aetheria committed to plain-text replies for the Buttons,
+		// Interactive, and List helpers. They are no longer referenceable
+		// and were inlined once the interactive builders were removed.
 
 		const buildSendOptions = (options = {}) => {
 			const sendOptions = {
@@ -2030,10 +1913,15 @@ class SerializedMessageBuilder {
 		// route to plain text. The pre-encoded proto + relayMessage path
 		// (buildXxxMessage -> relayMessage) was unreliable on the official
 		// Baileys v7 build because its relayMessage requires an exact
-		// sender-key store handshake for groups and silently drops the
-		// message otherwise. Plain text answers are stable. The interactive
-		// builders in src/lib/interactiveMessage.js still exist for any
-		// future re-introduction.
+		// ponytail: interactive helpers all currently route to plain text via
+		// sock.sendMessage. The Baileys official v7 build does not expand the
+		// nativeFlow / buttons / sections shortcuts inside sendMessage, so
+		// pre-encoded interactive messages would require sock.relayMessage.
+		// Since relayMessage in groups is sensitive to sender-key handshake
+		// and addressing_mode resolution, we keep this surface strictly
+		// plain text. The NativeFlowMessage + InteractiveMessage builder
+		// helpers once lived in src/lib/interactiveMessage.js, but were
+		// removed when this strategy was finalised.
 
 		m.reply = async (text, options = {}) => {
 			const chatId = options?.from || m.from;
