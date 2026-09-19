@@ -32,7 +32,7 @@ import {
 	makeCacheableSignalKeyStore,
 	makeWASocket,
 	proto,
-} from "baileys";
+} from "#lib/baileys";
 import qrcode from "qrcode";
 
 /**

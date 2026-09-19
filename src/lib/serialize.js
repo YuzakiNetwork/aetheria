@@ -16,7 +16,7 @@ import {
 	jidDecode,
 	jidNormalizedUser,
 	proto,
-} from "baileys";
+} from "#lib/baileys";
 import { fileTypeFromBuffer } from "file-type";
 import { randomBytes } from "node:crypto";
 import { existsSync, promises, readFileSync } from "node:fs";
