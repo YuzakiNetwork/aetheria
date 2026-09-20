@@ -1,3 +1,0 @@
-[submodule "vendor/baileys-caller"]
-	path = vendor/baileys-caller
-	url = git@github.com:YuzakiNetwork/baileys-caller-patched.git

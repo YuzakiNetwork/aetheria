@@ -27,19 +27,17 @@
 		"url": "https://github.com/YuzakiNetwork/aetheria/issues"
 	},
 	"homepage": "https://github.com/YuzakiNetwork/aetheria#readme",
-	"description": "Clean, modular WhatsApp bot based on Katsumi and Baron Baileys.",
+	"description": "Clean, modular WhatsApp bot based on Katsumi and Baileys.",
 	"keywords": [
 		"whatsapp-bot",
 		"bot-whatsapp",
-		"baileys",
-		"baron-baileys"
+		"baileys"
 	],
 	"dependencies": {
 		"@discordjs/voice": "^0.19.2",
 		"@supabase/supabase-js": "^2.105.4",
 		"axios": "^1.13.5",
-		"baileys": "github:7ucg/baron-baileys-v2",
-		"baileys-caller": "file:./vendor/baileys-caller",
+		"baron-baileys-v2": "^1.5.8",
 		"cheerio": "^1.2.0",
 		"discord.js": "^14.26.4",
 		"ffmpeg": "^0.0.4",

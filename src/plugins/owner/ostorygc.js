@@ -20,7 +20,7 @@ export default {
 
 	/**
 	 * @param {import("../../lib/serialize").default} m
-	 * @param {{ sock: import("@itsliaaa/baileys").WASocket, text: string }}
+	 * @param {{ sock: import("baron-baileys-v2").WASocket, text: string }}
 	 */
 	async execute(m, { sock, text }) {
 		if (!sock.swgc) {

@@ -32,7 +32,7 @@ import {
 	makeCacheableSignalKeyStore,
 	makeWASocket,
 	proto,
-} from "#lib/baileys";
+} from "baron-baileys-v2";
 import qrcode from "qrcode";
 
 /**
@@ -303,15 +303,6 @@ class Connect {
 					`Connection opened successfully for session ${this.sessionName}.`
 				);
 
-				// Register the connected socket with the VoIP call adapter
-				// so baileys-caller can reuse it for voice-call signaling
-				// instead of opening a second linked-device session.
-				try {
-					const { setSharedSock } = await import("#lib/callAdapter");
-					setSharedSock(this.sock);
-				} catch {
-					// callAdapter or baileys-caller not available — skip silently.
-				}
 			}
 		});
 

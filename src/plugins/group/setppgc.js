@@ -1,4 +1,4 @@
-import { S_WHATSAPP_NET } from "baileys";
+import { S_WHATSAPP_NET } from "baron-baileys-v2";
 import { Jimp, JimpMime } from "jimp";
 
 export default {
@@ -20,7 +20,7 @@ export default {
 	owner: false,
 
 	/**
-	 * @param {import('@itsliaaa/baileys').WASocket} sock - The Baileys socket object.
+	 * @param {import('baron-baileys-v2').WASocket} sock - The Baileys socket object.
 	 * @param {object} m - The serialized message object.
 	 */
 	execute: async (m, { sock }) => {

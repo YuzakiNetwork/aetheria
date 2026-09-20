@@ -19,7 +19,7 @@ export default {
 	owner: true,
 
 	/**
-	 * @param {import('@itsliaaa/baileys').WASocket} sock - The Baileys socket object.
+	 * @param {import('baron-baileys-v2').WASocket} sock - The Baileys socket object.
 	 * @param {object} m - The serialized message object.
 	 * @param {object} plugins - The plugins object.
 	 * @param {object} args - The arguments object.

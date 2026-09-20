@@ -20,7 +20,7 @@ export default {
 
 	/**
 	 * @param {import("../../lib/serialize").default} m
-	 * @param {{ sock: import("@itsliaaa/baileys").WASocket }}
+	 * @param {{ sock: import("baron-baileys-v2").WASocket }}
 	 */
 	execute: async (m) => {
 		let input = m.text?.trim();

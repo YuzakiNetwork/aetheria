@@ -4,7 +4,7 @@ import {
 	createAccountLinkSession,
 	getLinkedAccountByWhatsApp,
 } from "#lib/supabase/accountLinking";
-import { WAProto, generateWAMessageFromContent } from "baileys";
+import { WAProto, generateWAMessageFromContent } from "baron-baileys-v2";
 
 const USE_EXPERIMENTAL_CTA_URL =
 	process.env.AETHERIA_WA_CTA_URL_ENABLED === "true";

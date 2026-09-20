@@ -3,7 +3,7 @@ import * as Func from "#lib/functions";
 import { getPrefix } from "#lib/prefix";
 import Sticker from "#lib/sticker";
 import { to_audio } from "#utils/converter";
-import {
+import BaronBaileys, {
 	areJidsSameUser,
 	chatModificationToAppPatch,
 	downloadMediaMessage,
@@ -15,8 +15,12 @@ import {
 	getContentType,
 	jidDecode,
 	jidNormalizedUser,
-	proto,
-} from "#lib/baileys";
+} from "baron-baileys-v2";
+
+// `proto` isn't a statically-detectable named export on baron-baileys-v2's
+// CJS build (its WAProto module assigns `module.exports = $root` at
+// runtime), so it's pulled off the default import instead.
+const { proto } = BaronBaileys;
 import { fileTypeFromBuffer } from "file-type";
 import { randomBytes } from "node:crypto";
 import { existsSync, promises, readFileSync } from "node:fs";

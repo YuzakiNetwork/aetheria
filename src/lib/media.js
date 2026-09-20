@@ -11,7 +11,7 @@ export function isMediaMessage(str) {
 }
 
 /**
- * @type {keyof import("@itsliaaa/baileys").proto.Message}
+ * @type {keyof import("baron-baileys-v2").proto.Message}
  */
 export const mimeMap = {
 	imageMessage: "image",

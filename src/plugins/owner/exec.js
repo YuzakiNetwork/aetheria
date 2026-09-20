@@ -17,7 +17,7 @@ export default {
 	/**
 	 * Executes the provided JavaScript code.
 	 * @param {object} context - The context object.
-	 * @param {import('@itsliaaa/baileys').WASocket} context.sock - The Baileys socket object.
+	 * @param {import('baron-baileys-v2').WASocket} context.sock - The Baileys socket object.
 	 * @param {object} context.m - The serialized message object.
 	 */
 	async execute(m, { isOwner, text }) {

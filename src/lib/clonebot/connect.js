@@ -14,15 +14,19 @@ import {
 	safeNorm,
 } from "#utils/message";
 import NodeCache from "@cacheable/node-cache";
-import {
+import BaronBaileys, {
 	Browsers,
 	DisconnectReason,
 	fetchLatestBaileysVersion,
 	getAggregateVotesInPollMessage,
 	makeCacheableSignalKeyStore,
 	makeWASocket,
-	proto,
-} from "baileys";
+} from "baron-baileys-v2";
+
+// `proto` isn't a statically-detectable named export on baron-baileys-v2's
+// CJS build (its WAProto module assigns `module.exports = $root` at
+// runtime), so it's pulled off the default import instead.
+const { proto } = BaronBaileys;
 import { randomBytes } from "node:crypto";
 import pino from "pino";
 

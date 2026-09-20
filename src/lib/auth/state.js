@@ -1,7 +1,7 @@
 import { MYSQL_CONFIG } from "#config/index";
 import { useMongoDbAuthState } from "#lib/auth/mongodb";
 import logger from "#lib/logger";
-import { useMultiFileAuthState } from "baileys";
+import { useMultiFileAuthState } from "baron-baileys-v2";
 import { readdir, unlink } from "node:fs/promises";
 import { join } from "node:path";
 

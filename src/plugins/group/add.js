@@ -1,5 +1,5 @@
 import { getFile } from "#lib/functions";
-import { WAProto, generateWAMessageFromContent, toNumber } from "baileys";
+import { WAProto, generateWAMessageFromContent, toNumber } from "baron-baileys-v2";
 
 export default {
 	name: "add",
@@ -20,7 +20,7 @@ export default {
 	owner: false,
 
 	/**
-	 * @param {import('@itsliaaa/baileys').WASocket} sock - The Baileys socket object.
+	 * @param {import('baron-baileys-v2').WASocket} sock - The Baileys socket object.
 	 * @param {object} m - The serialized message object.
 	 */
 	execute: async (m, { sock }) => {

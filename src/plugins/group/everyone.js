@@ -20,7 +20,7 @@ export default {
 
 	/**
 	 * @param {object} m serialized message
-	 * @param {{ text: string, sock: import('@itsliaaa/baileys').WASocket }} ctx
+	 * @param {{ text: string, sock: import('baron-baileys-v2').WASocket }} ctx
 	 */
 	execute: async (m, { text, sock, groupMetadata }) => {
 		if (!groupMetadata?.participants?.length) {

@@ -1,5 +1,5 @@
 import print from "#lib/print";
-import { BufferJSON, WAProto, initAuthCreds } from "baileys";
+import { BufferJSON, WAProto, initAuthCreds } from "baron-baileys-v2";
 import { MongoClient } from "mongodb";
 
 /**
